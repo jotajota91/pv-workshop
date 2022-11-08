@@ -84,6 +84,29 @@ exports.product_get_product = (req, res, next) => {
     })
 }
 
+exports.product_get_product_query = (req, res, next) => {
+    const id = req.query.productId
+    Product.find({productId: id})
+    .select('productId name price soldBy stock')
+    .exec()
+    .then(doc => {
+        console.log(doc)
+        if(doc) {
+            res.status(200)
+            .json(doc)
+        } else {
+            res.status(404).json({
+                message: "No valid entry found"
+            })
+        }
+        
+    }).catch( err => {
+        console.log(err)
+        res.status(500)
+        .json({error: err })
+    })
+}
+
 exports.products_update_product =  (req, res, next) => {
     const id = req.params.productId
     const updateOps = {}
