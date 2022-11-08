@@ -11,7 +11,7 @@ router.get('/:productId',  checkAuth,  async function(req, res, next) {
     const  uniqueCode = req.query.productId;
     if (uniqueCode) {
         ProductController.product_get_product_query
-     } else if (uniqueCode) {
+     } else {
         ProductController.product_get_product
      }
 })
