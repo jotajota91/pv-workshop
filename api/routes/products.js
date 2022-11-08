@@ -8,7 +8,8 @@ router.get('/', ProductController.products_get_all)
 router.post('/',  checkAuth, ProductController.products_create_product)
 
 router.get('/:productId',  checkAuth,  async function(req, res, next) {
-    const  uniqueCode = req.query.productId;
+    const  uniqueCode = req.query.id;
+    console.log(req.query.id);            
     if (uniqueCode) {
         ProductController.product_get_product_query
      } else {
