@@ -2,7 +2,8 @@ const Product = require('../models/products')
 const mongoose = require('mongoose')
 
 exports.products_get_all = (req, res, next) => {
-    Product.find()
+    const id = req.query.id
+    Product.find(id)
     .select('name price soldBy stock productId')
     .exec()
     .then(docs =>{
